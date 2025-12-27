@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KL Student Portal - Feedback</title>
+    <link rel="stylesheet" href="secondpage.css">
+</head>
+<body>
+    <div class="bg-container"></div>
+    <div class="overlay"></div>
+
+    <header class="top-bar">
+        <div class="logo-area">
+            <span class="logo-circle">KL</span>
+            <span class="logo-text">Student Portal</span>
+        </div>
+        <div class="user-area">
+            <span class="user-name">Welcome, Username</span>
+            <button class="logout-btn" id="logoutBtn" onclick="location.href='firstpage.html'">Logout</button>
+        </div>
+    </header>
+
+    <main class="main-wrapper">
+        <section class="welcome-card">
+            <h1>Student Feedback & Evaluation System</h1>
+            <p>Please select a category below to provide your feedback on university standards.</p>
+        </section>
+
+        <section class="cards-grid">
+            <a href="course-feedback.html" class="card">
+                <h2>Courses</h2>
+                <p>Provide detailed feedback on curriculum, course content, and materials.</p>
+            </a>
+
+            <a href="instructor-feedback.html" class="card">
+                <h2>Instructors</h2>
+                <p>Evaluate teaching methodology, responsiveness, and academic support.</p>
+            </a>
+
+            <a href="services-feedback.html" class="card">
+                <h2>Institutional Services</h2>
+                <p>Rate campus facilities, library services, and administrative support.</p>
+            </a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 KL University – Student Portal</p>
+    </footer>
+
+    <script src="secondpage.js"></script>
+</body>
+</html>

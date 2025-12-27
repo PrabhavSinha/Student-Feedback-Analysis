@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructor Evaluation | KL University</title>
+    <link rel="stylesheet" href="course-feedback.css"> </head>
+<body>
+    <div class="bg-container"></div>
+    <div class="overlay"></div>
+
+    <div class="glass-wrapper">
+        <header class="form-header">
+            <div class="header-top">
+                <span class="form-logo">KL</span>
+                <button class="back-link" onclick="location.href='secondpage.html'">← Back to Dashboard</button>
+            </div>
+            <h1>Instructor Evaluation</h1>
+            <p>Help us recognize excellence in teaching and professional conduct.</p>
+        </header>
+
+        <form id="instructorForm" class="feedback-content">
+            <div class="input-group">
+                <label>Select Instructor</label>
+                <select required id="instructorSelection">
+                    <option value="" disabled selected>Choose an instructor...</option>
+                    <option value="DBMS Instructor">DBMS Instructor</option>
+                    <option value="DSA Instructor">DSA Instructor</option>
+                    <option value="Web Tech Instructor">Web Technologies Instructor</option>
+                    <option value="AI Instructor">AI & Machine Learning Instructor</option>
+                    <option value="Discrete Math Instructor">Discrete Mathematics Instructor</option>
+                </select>
+            </div>
+
+            <div class="scroll-area">
+                <div class="rating-row">
+                    <span>1. Clarity in explaining complex concepts</span>
+                    <select class="rating-input" required>
+                        <option value="5">5 - Excellent</option>
+                        <option value="4">4 - Good</option>
+                        <option value="3">3 - Average</option>
+                        <option value="2">2 - Fair</option>
+                        <option value="1">1 - Poor</option>
+                    </select>
+                </div>
+                <div class="rating-row">
+                    <span>2. Punctuality and regular conduct of classes</span>
+                    <select class="rating-input"><option value="5">5</option><option value="4">4</option><option value="3">3</option><option value="2">2</option><option value="1">1</option></select>
+                </div>
+                <div class="rating-row">
+                    <span>3. Encouragement of student participation/questions</span>
+                    <select class="rating-input"><option value="5">5</option><option value="4">4</option><option value="3">3</option><option value="2">2</option><option value="1">1</option></select>
+                </div>
+                <div class="rating-row">
+                    <span>4. Use of modern teaching aids (PPTs, Labs, etc.)</span>
+                    <select class="rating-input"><option value="5">5</option><option value="4">4</option><option value="3">3</option><option value="2">2</option><option value="1">1</option></select>
+                </div>
+                <div class="rating-row">
+                    <span>5. Fairness in grading and evaluation</span>
+                    <select class="rating-input"><option value="5">5</option><option value="4">4</option><option value="3">3</option><option value="2">2</option><option value="1">1</option></select>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Additional Comments about the Faculty</label>
+                <textarea id="facultyComments" placeholder="Share your experience with this instructor..." rows="3"></textarea>
+            </div>
+
+            <button type="button" class="submit-btn" onclick="submitInstructorData()">Submit Evaluation</button>
+        </form>
+    </div>
+
+    <script>
+        function submitInstructorData() {
+            // 1. Capture Form Inputs
+            const instructor = document.getElementById('instructorSelection').value;
+            const comments = document.getElementById('facultyComments').value;
+            const mainRating = document.querySelector('.rating-input').value;
+
+            // 2. Validation
+            if (!instructor) {
+                alert("Please select an instructor before submitting.");
+                return;
+            }
+
+            // 3. Create the Feedback Object
+            const feedbackEntry = {
+                category: 'Instructor',
+                target: instructor,
+                score: mainRating,
+                comment: comments || "No specific comments.",
+                date: new Date().toLocaleString()
+            };
+
+            // 4. Save to shared localStorage
+            let allRecords = JSON.parse(localStorage.getItem('studentFeedback')) || [];
+            allRecords.push(feedbackEntry);
+            localStorage.setItem('studentFeedback', JSON.stringify(allRecords));
+
+            // 5. Success Alert and Redirect
+            alert("Feedback for " + instructor + " has been recorded successfully.");
+            window.location.href = 'secondpage.html';
+        }
+    </script>
+</body>
+</html>

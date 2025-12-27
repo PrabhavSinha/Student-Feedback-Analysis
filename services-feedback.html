@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institutional Services Feedback | KL University</title>
+    <link rel="stylesheet" href="course-feedback.css"> </head>
+<body>
+    <div class="bg-container"></div>
+    <div class="overlay"></div>
+
+    <div class="glass-wrapper">
+        <header class="form-header">
+            <div class="header-top">
+                <span class="form-logo">KL</span>
+                <button class="back-link" onclick="location.href='secondpage.html'">← Back to Dashboard</button>
+            </div>
+            <h1>Institutional Services</h1>
+            <p>Help us improve campus facilities and administrative support.</p>
+        </header>
+
+        <form id="servicesForm" class="feedback-content">
+            <div class="input-group">
+                <label>Select Service Department</label>
+                <select required id="serviceSelection">
+                    <option value="" disabled selected>Choose a service...</option>
+                    <option value="Central Library">Central Library</option>
+                    <option value="Canteen/Cafeteria">Canteen/Cafeteria</option>
+                    <option value="Hostel Facilities">Hostel Facilities</option>
+                    <option value="Sports & Gym">Sports & Gym</option>
+                    <option value="Transport Services">Transport Services</option>
+                    <option value="Administrative Office">Administrative Office</option>
+                </select>
+            </div>
+
+            <div class="scroll-area">
+                <div class="rating-row">
+                    <span>1. Cleanliness and maintenance of facilities</span>
+                    <select required><option value="">1-5</option><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select>
+                </div>
+                <div class="rating-row">
+                    <span>2. Availability and quality of equipment/books</span>
+                    <select required><option value="">1-5</option><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select>
+                </div>
+                <div class="rating-row">
+                    <span>3. Professionalism and behavior of staff</span>
+                    <select required><option value="">1-5</option><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select>
+                </div>
+                <div class="rating-row">
+                    <span>4. Speed of service and responsiveness</span>
+                    <select required><option value="">1-5</option><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select>
+                </div>
+                <div class="rating-row">
+                    <span>5. Ease of access to information/portal</span>
+                    <select required><option value="">1-5</option><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select>
+                </div>
+                <div class="rating-row">
+                    <span>6. Value for money (Fees/Charges)</span>
+                    <select required><option value="">1-5</option><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select>
+                </div>
+                <div class="rating-row">
+                    <span>7. Overall experience with this service</span>
+                    <select required><option value="">1-5</option><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Describe any specific issues or suggestions</label>
+                <textarea id="serviceComments" placeholder="How can we make this service better?" rows="3"></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit Feedback</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('servicesForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const service = document.getElementById('serviceSelection').value;
+            
+            // Pop up the alert message
+            alert("Form Submitted Successfully! Your feedback for " + service + " has been sent to the administration.");
+            
+            // Go back to the second page (Dashboard)
+            window.location.href = 'secondpage.html';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Feedback</title>
+    <link rel="stylesheet" href="feedback.css">
+</head>
+<body>
+    <div class="bg-container"></div>
+    <div class="overlay"></div>
+
+    <header class="top-bar">
+        <div class="logo-area">
+            <span class="logo-circle">KL</span>
+            <span class="logo-text">Student Feedback</span>
+        </div>
+        <div class="user-area">
+            <span class="user-name">Welcome, Student</span>
+            <button class="logout-btn" onclick="window.location.href='firstpage.html'">Logout</button>
+        </div>
+    </header>
+
+    <main class="feedback-main">
+        <section class="info-card">
+            <h1>Course & Instructor Feedback</h1>
+            <p>
+                This page is used to collect your feedback about courses, instructors and institutional services.
+                Your responses will help the department improve teaching, labs and support facilities.
+            </p>
+        </section>
+
+        <section class="form-card">
+            <h2>Submit Your Feedback</h2>
+
+            <form id="feedbackForm">
+                <div class="form-group">
+                    <label for="course">Course Name</label>
+                    <input type="text" id="course" name="course" placeholder="Enter course name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="instructor">Instructor Name</label>
+                    <input type="text" id="instructor" name="instructor" placeholder="Enter instructor name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="rating">Overall Rating</label>
+                    <select id="rating" name="rating" required>
+                        <option value="">Select rating</option>
+                        <option value="5">5 - Excellent</option>
+                        <option value="4">4 - Very Good</option>
+                        <option value="3">3 - Good</option>
+                        <option value="2">2 - Average</option>
+                        <option value="1">1 - Poor</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="comments">Comments / Suggestions</label>
+                    <textarea id="comments" name="comments" rows="4" placeholder="Write your feedback here..." required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Submit Feedback</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        // Simple submit handler
+        document.getElementById('feedbackForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your feedback!');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

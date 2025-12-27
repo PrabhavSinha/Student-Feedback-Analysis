@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <link rel="stylesheet" href="feedback.css">
+</head>
+<body>
+    <div class="bg-container"></div>
+    <div class="overlay"></div>
+
+    <header class="top-bar">
+        <div class="logo-area">
+            <span class="logo-circle">KL</span>
+            <span class="logo-text">Student Projects</span>
+        </div>
+        <div class="user-area">
+            <span class="user-name">Projects</span>
+            <button class="logout-btn" onclick="window.location.href='firstpage.html'">Logout</button>
+        </div>
+    </header>
+
+    <main class="feedback-main">
+        <section class="info-card">
+            <h1>Academic & Mini Projects</h1>
+            <p>
+                Here you can see details about your academic, mini and capstone projects. 
+                Use this space to list objectives, technologies used and project status.
+            </p>
+        </section>
+
+        <section class="form-card">
+            <h2>Add / Update Project</h2>
+
+            <form id="projectForm">
+                <div class="form-group">
+                    <label for="pname">Project Title</label>
+                    <input id="pname" type="text" placeholder="Enter project title" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="pdomain">Domain</label>
+                    <input id="pdomain" type="text" placeholder="E.g. Web Development, AI/ML" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="pstatus">Status</label>
+                    <select id="pstatus" required>
+                        <option value="">Select status</option>
+                        <option value="ongoing">On going</option>
+                        <option value="completed">Completed</option>
+                        <option value="planned">Planned</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="pdesc">Short Description</label>
+                    <textarea id="pdesc" rows="4" placeholder="Describe your project in 3–4 lines" required></textarea>
+                </div>
+
+                <button type="submit" class="submit-btn">Save Project</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        document.getElementById('projectForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Project details saved (demo).');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

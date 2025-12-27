@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | KL University</title>
+    <link rel="stylesheet" href="course-feedback.css">
+</head>
+<body>
+    <div class="bg-container"></div>
+    <div class="overlay"></div>
+
+    <div class="glass-wrapper" style="max-width: 1000px;">
+        <header class="header-top">
+            <div class="logo-area">
+                <span class="back-link" style="background:white; color:#1d8080; font-weight:bold;">KL</span>
+                <h1 style="margin-left:15px; display:inline; font-size:1.5rem;">Admin Control Center</h1>
+            </div>
+            <button class="back-link" onclick="location.href='firstpage.html'">Logout</button>
+        </header>
+
+        <section class="admin-content">
+            <h3 style="color: #feca57; margin-bottom: 20px; border-left: 4px solid #00b894; padding-left: 10px;">
+                Live Student Feedback Analysis
+            </h3>
+
+            <div class="scroll-area" style="max-height: 450px;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Subject/Faculty</th>
+                            <th>Rating</th>
+                            <th>Comments</th>
+                            <th>Submitted On</th>
+                        </tr>
+                    </thead>
+                    <tbody id="feedbackTableBody">
+                        </tbody>
+                </table>
+            </div>
+
+            <div style="display: flex; gap: 15px; margin-top: 20px;">
+                <button class="submit-btn" style="background: #576574;" onclick="location.reload()">Refresh Data</button>
+                <button class="submit-btn" style="background: #ff4757;" onclick="clearSystemData()">Clear All Records</button>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Function to load data from localStorage
+        function displayFeedback() {
+            const tableBody = document.getElementById('feedbackTableBody');
+            // Retrieve the shared data array
+            const rawData = localStorage.getItem('studentFeedback');
+            const feedbackList = JSON.parse(rawData) || [];
+
+            // Clear table before loading
+            tableBody.innerHTML = '';
+
+            if (feedbackList.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 40px;">No feedback entries found in the system.</td></tr>';
+                return;
+            }
+
+            // Loop through data (newest first) and create rows
+            feedbackList.reverse().forEach(item => {
+                const row = `
+                    <tr>
+                        <td><span class="badge">${item.category}</span></td>
+                        <td><strong>${item.target}</strong></td>
+                        <td style="color:#00b894; font-weight:bold;">${item.score}/5</td>
+                        <td style="max-width:250px; font-style:italic;">"${item.comment}"</td>
+                        <td>${item.date}</td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        // Function to wipe the localStorage
+        function clearSystemData() {
+            if (confirm("Warning: This will permanently delete all student feedback records. Continue?")) {
+                localStorage.removeItem('studentFeedback');
+                displayFeedback();
+            }
+        }
+
+        // Run on page load
+        window.onload = displayFeedback;
+    </script>
+</body>
+</html>

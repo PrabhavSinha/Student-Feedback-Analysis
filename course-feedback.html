@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Evaluation | KL University</title>
+    <link rel="stylesheet" href="course-feedback.css">
+</head>
+<body>
+    <div class="bg-container"></div>
+    <div class="overlay"></div>
+
+    <div class="glass-wrapper">
+        <header class="form-header">
+            <div class="header-top">
+                <span class="form-logo">KL</span>
+                <button class="back-link" onclick="location.href='secondpage.html'">← Back to Dashboard</button>
+            </div>
+            <h1>Course Evaluation</h1>
+            <p>Your feedback helps us improve the learning experience.</p>
+        </header>
+
+        <form id="feedbackForm" class="feedback-content">
+            <div class="input-group">
+                <label>Select Course</label>
+                <select required id="courseSelection">
+                    <option value="" disabled selected>Choose a course...</option>
+                    <option value="Data Structures & Algorithms">Data Structures & Algorithms</option>
+                    <option value="Database Management Systems">Database Management Systems</option>
+                    <option value="Artificial Intelligence">Artificial Intelligence</option>
+                    <option value="Computer Networks">Computer Networks</option>
+                </select>
+            </div>
+
+            <div class="scroll-area">
+                <div class="rating-row">
+                    <span>1. Depth of course content coverage</span>
+                    <select class="rating-input" required>
+                        <option value="5">5 - Excellent</option>
+                        <option value="4">4 - Very Good</option>
+                        <option value="3">3 - Average</option>
+                        <option value="2">2 - Poor</option>
+                        <option value="1">1 - Very Poor</option>
+                    </select>
+                </div>
+                <div class="rating-row">
+                    <span>2. Relevance of assignments to the syllabus</span>
+                    <select class="rating-input"><option value="5">5</option><option value="4">4</option><option value="3">3</option><option value="2">2</option><option value="1">1</option></select>
+                </div>
+                <div class="rating-row">
+                    <span>3. Quality of digital learning resources</span>
+                    <select class="rating-input"><option value="5">5</option><option value="4">4</option><option value="3">3</option><option value="2">2</option><option value="1">1</option></select>
+                </div>
+                <div class="rating-row">
+                    <span>4. Balance between theory and practicals</span>
+                    <select class="rating-input"><option value="5">5</option><option value="4">4</option><option value="3">3</option><option value="2">2</option><option value="1">1</option></select>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Additional Suggestions</label>
+                <textarea id="userComments" placeholder="Share your experience or suggestions for improvement..." rows="3"></textarea>
+            </div>
+
+            <button type="button" class="submit-btn" onclick="submitToAdmin()">Submit Feedback</button>
+        </form>
+    </div>
+
+    <script>
+        function submitToAdmin() {
+            // 1. Capture Form Elements
+            const course = document.getElementById('courseSelection').value;
+            const comments = document.getElementById('userComments').value;
+            // Get the first rating as a representative score for the summary
+            const mainRating = document.querySelector('.rating-input').value;
+
+            // 2. Validate Selection
+            if (!course) {
+                alert("Please select a course before submitting.");
+                return;
+            }
+
+            // 3. Create Feedback Data Object
+            const feedbackEntry = {
+                category: 'Course',
+                target: course,
+                score: mainRating,
+                comment: comments || "No comments provided.",
+                date: new Date().toLocaleString()
+            };
+
+            // 4. Store in localStorage
+            // Get existing records or initialize empty array
+            let allRecords = JSON.parse(localStorage.getItem('studentFeedback')) || [];
+            
+            // Add new record to the list
+            allRecords.push(feedbackEntry);
+            
+            // Save updated list back to browser memory
+            localStorage.setItem('studentFeedback', JSON.stringify(allRecords));
+
+            // 5. Success Message and Redirect
+            alert("Success! Your feedback for " + course + " has been sent to the Admin Dashboard.");
+            window.location.href = 'secondpage.html';
+        }
+    </script>
+</body>
+</html>

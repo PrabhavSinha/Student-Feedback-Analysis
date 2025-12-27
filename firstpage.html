@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | KL Student Feedback System</title>
+    <link rel="stylesheet" href="firstpage.css">
+</head>
+<body>
+    <div class="bg-container"></div>
+    <div class="overlay"></div>
+
+    <div class="login-card">
+        <div class="login-header">
+            <div class="logo-circle">KL</div>
+            <h1>Welcome Back</h1>
+            <p>Enter your details to access the portal</p>
+        </div>
+
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter your ID" required>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="••••••••" required>
+            </div>
+
+            <div class="input-group">
+                <label for="userRole">Select Role</label>
+                <select id="userRole">
+                    <option value="student">Student</option>
+                    <option value="admin">Administrator</option>
+                </select>
+            </div>
+
+            <div class="form-footer">
+                <label><input type="checkbox"> Remember me</label>
+                <a href="#">Forgot Password?</a>
+            </div>
+
+            <button type="button" class="login-btn" onclick="handleLogin()">Login</button>
+        </form>
+
+        <div class="signup-link">
+            Don't have an account? <a href="#">Create one now</a>
+        </div>
+    </div>
+
+    <script src="firstpage.js"></script>
+</body>
+</html>
