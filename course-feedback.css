@@ -1,9 +1,9 @@
-/* --- Global Reset --- */
+/* --- Global Styles --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
@@ -13,29 +13,22 @@ body {
     align-items: center;
     padding: 20px;
     color: white;
-    background-color: #0f172a; /* Dark fallback if image fails */
+    overflow-x: hidden;
+    background-color: #000; /* Dark fallback */
 }
 
-/* --- The Background Engine --- */
+/* --- Fixed Background Engine --- */
 .bg-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* Try login_bcg.png first. GitHub is case-sensitive! */
-    background-image: url('login_bcg.png');
-    
-    /* Fallback: If login_bcg fails, it tries the other file. 
-       Note: %20 is used for the space in "BG IMMAGE.png" */
-    background-image: url('BG%20IMMAGE.png'), url('login_bcg.png');
-    
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    /* Forced path to login_bcg.png */
+    background: url('login_bcg.png') no-repeat center center/cover;
     z-index: -2;
-    filter: brightness(0.5); /* Necessary for text readability */
-    transform: scale(1.05);
+    filter: brightness(0.5); /* Improves text contrast */
+    transform: scale(1.1); /* Prevents white edges during blur */
 }
 
 .overlay {
@@ -44,29 +37,24 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.3);
     z-index: -1;
 }
 
-/* --- Glassmorphism Effect --- */
+/* --- Glassmorphism UI --- */
 .glass-wrapper {
-    background: rgba(255, 255, 255, 0.05); /* Semi-transparent */
-    backdrop-filter: blur(20px) saturate(160%); /* The "Frosted" look */
-    -webkit-backdrop-filter: blur(20px) saturate(160%);
-    border: 1px solid rgba(255, 255, 255, 0.1); /* Glass border */
+    background: rgba(255, 255, 255, 0.08); /* Transparent white */
+    backdrop-filter: blur(25px) saturate(150%); /* The Frosted Effect */
+    -webkit-backdrop-filter: blur(25px) saturate(150%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 24px;
-    padding: 40px;
     width: 100%;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-    animation: fadeIn 0.8s ease;
+    max-width: 450px; /* Perfect for Login */
+    padding: 40px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* --- UI Elements & Typography --- */
+/* --- Form Elements --- */
 .form-header {
     text-align: center;
     margin-bottom: 30px;
@@ -79,57 +67,41 @@ body {
 label {
     display: block;
     margin-bottom: 8px;
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.85rem;
+    opacity: 0.9;
 }
 
-/* Modern Inputs */
-select, textarea, input {
+input, select {
     width: 100%;
     padding: 12px 16px;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 12px;
+    border-radius: 10px;
     color: white;
     outline: none;
     transition: 0.3s;
 }
 
-select:focus, input:focus {
+input:focus {
+    background: rgba(255, 255, 255, 0.2);
     border-color: #00d2d3;
-    background: rgba(255, 255, 255, 0.15);
 }
 
-/* --- Buttons --- */
 .submit-btn {
     width: 100%;
     padding: 14px;
     background: #00b894;
     border: none;
-    border-radius: 12px;
+    border-radius: 10px;
     color: white;
-    font-weight: 700;
+    font-weight: bold;
     cursor: pointer;
-    transition: transform 0.2s, background 0.3s;
+    transition: 0.3s;
+    text-transform: uppercase;
 }
 
 .submit-btn:hover {
     background: #00d2d3;
     transform: translateY(-2px);
-}
-
-.back-link {
-    display: inline-block;
-    padding: 6px 14px;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    text-decoration: none;
-    border-radius: 50px;
-    font-size: 0.8rem;
-    transition: 0.3s;
-}
-
-.back-link:hover {
-    background: white;
-    color: #0f172a;
+    box-shadow: 0 5px 15px rgba(0, 184, 148, 0.4);
 }
