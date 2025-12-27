@@ -4,50 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | KL Student Feedback System</title>
-    <link rel="stylesheet" href="firstpage.css">
+    <link rel="stylesheet" href="course-feedback.css">
 </head>
 <body>
     <div class="bg-container"></div>
     <div class="overlay"></div>
 
-    <div class="login-card">
-        <div class="login-header">
-            <div class="logo-circle">KL</div>
-            <h1>Welcome Back</h1>
-            <p>Enter your details to access the portal</p>
+    <main class="glass-wrapper" style="max-width: 450px;">
+        <div class="form-header">
+            <div style="background: #00d2d3; color: white; width: 50px; height: 50px; line-height: 50px; border-radius: 12px; margin: 0 auto 15px; font-weight: bold; font-size: 1.5rem;">KL</div>
+            <h1 style="font-size: 1.8rem; margin-bottom: 10px;">Welcome Back</h1>
+            <p style="font-size: 0.9rem; opacity: 0.8;">Enter your details to access the portal</p>
         </div>
 
-        <form id="loginForm">
+        <form onsubmit="event.preventDefault(); handleLogin();">
             <div class="input-group">
                 <label for="username">Username</label>
-                <input type="text" id="username" placeholder="Enter your ID" required>
+                <input type="text" id="username" placeholder="Enter Student or Admin ID" required aria-label="Username">
             </div>
 
             <div class="input-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" placeholder="••••••••" required>
+                <input type="password" id="password" placeholder="••••••" required aria-label="Password">
             </div>
 
             <div class="input-group">
                 <label for="userRole">Select Role</label>
-                <select id="userRole">
+                <select id="userRole" aria-label="Select User Role">
                     <option value="student">Student</option>
                     <option value="admin">Administrator</option>
                 </select>
             </div>
 
-            <div class="form-footer">
-                <label><input type="checkbox"> Remember me</label>
-                <a href="#">Forgot Password?</a>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; font-size: 0.85rem;">
+                <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                    <input type="checkbox"> Remember me
+                </label>
+                <a href="#" style="color: #00d2d3; text-decoration: none;">Forgot Password?</a>
             </div>
 
-            <button type="button" class="login-btn" onclick="handleLogin()">Login</button>
+            <button type="submit" class="submit-btn">Login</button>
         </form>
 
-        <div class="signup-link">
-            Don't have an account? <a href="#">Create one now</a>
-        </div>
-    </div>
+        <p style="text-align: center; margin-top: 25px; font-size: 0.85rem; opacity: 0.7;">
+            Don't have an account? <a href="#" style="color: #00d2d3; text-decoration: none; font-weight: bold;">Create one now</a>
+        </p>
+    </main>
 
     <script src="firstpage.js"></script>
 </body>
